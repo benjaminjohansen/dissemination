@@ -1,0 +1,100 @@
+[
+  {
+    "objectID": "presentations/20240920_DCA_survival.html#funding-and-disclosure",
+    "href": "presentations/20240920_DCA_survival.html#funding-and-disclosure",
+    "title": "Introduction to Survival Analysis for Clinical Prediction",
+    "section": "Funding and Disclosure",
+    "text": "Funding and Disclosure\nFunded by the Novo Nordisk Foundation: NNF22OC0076725 I have nothing to disclose"
+  },
+  {
+    "objectID": "presentations/20240920_DCA_survival.html#about-me",
+    "href": "presentations/20240920_DCA_survival.html#about-me",
+    "title": "Introduction to Survival Analysis for Clinical Prediction",
+    "section": "About me",
+    "text": "About me\n\nEngineer by training\nI worked with hearing aids and human behaviour: PhD in Human-Computer Interaction (HCI) and Ubiquitous and Pervasive Computing\nFour years in industry as a data scientist\nNow a researcher and data scientist at Steno Diabetes Center Aarhus\n\nWith an interest in prediction models for CVD risk in diabetes\n\nI do coding for fun 🤓"
+  },
+  {
+    "objectID": "presentations/20240920_DCA_survival.html#introduction",
+    "href": "presentations/20240920_DCA_survival.html#introduction",
+    "title": "Introduction to Survival Analysis for Clinical Prediction",
+    "section": "Introduction",
+    "text": "Introduction\n\nWhy is this relevant for people with an interest in the cardiovascular system?\n\nMost you will have seen either survival curves (Kaplan-Meier plots) or cummulative risk curves\nThe most used predictive modelling in surival is … The Cox Proportional Hazard regression model\nWho knows about SCORE2, QRISK3 or Framingham? SCORE2-Diabetes Working Group and the ESC Cardiovascular Risk Collaboration (2023)\nMachine learning (deep learning) might works much better than anticipated, if done right! Barbieri et al. (2022)"
+  },
+  {
+    "objectID": "presentations/20240920_DCA_survival.html#a-little-word-of-warning",
+    "href": "presentations/20240920_DCA_survival.html#a-little-word-of-warning",
+    "title": "Introduction to Survival Analysis for Clinical Prediction",
+    "section": "A little word of warning!",
+    "text": "A little word of warning!\n\nDo we understand the basics of scoring?\nMachine learning might not work as well as expected!\nDo we have enough samples? Riley et al. (2024) and Riley et al. (2020)\n\nThis is a good ressource for survival Infante, Miceli, and Ambrogi (2023)\n\nWhat scenarios can we use it in?\nWhat about the Curse of Dimensionality? Altman and Krzywinski (2018)\nThe litterature does not agree on the usefullness of machine learning for prediction models:\n\nChristodoulou et al. (2019)\nFinds no difference, but argues calibration is off Li et al. (2020)\nFinds machine learning outperforms regression models Liu et al. (2023)"
+  },
+  {
+    "objectID": "presentations/20240920_DCA_survival.html#a-small-detour-of-discrimination-and-calibration",
+    "href": "presentations/20240920_DCA_survival.html#a-small-detour-of-discrimination-and-calibration",
+    "title": "Introduction to Survival Analysis for Clinical Prediction",
+    "section": "A small detour of discrimination and calibration",
+    "text": "A small detour of discrimination and calibration\nA general introduction: Riley et al. (2024)"
+  },
+  {
+    "objectID": "presentations/20240920_DCA_survival.html#evaluating-clinical-models",
+    "href": "presentations/20240920_DCA_survival.html#evaluating-clinical-models",
+    "title": "Introduction to Survival Analysis for Clinical Prediction",
+    "section": "Evaluating clinical models",
+    "text": "Evaluating clinical models\nHow do we actually evaluate clinical prediction models: Collins et al. (2024)\nInternal validation: Recommended, bootstrapping Martin et al. (2021), k-fold cross validation@Collins2024EvaluationClinicalPrediction External validation"
+  },
+  {
+    "objectID": "presentations/20240920_DCA_survival.html#discrimination",
+    "href": "presentations/20240920_DCA_survival.html#discrimination",
+    "title": "Introduction to Survival Analysis for Clinical Prediction",
+    "section": "Discrimination",
+    "text": "Discrimination"
+  },
+  {
+    "objectID": "presentations/20240920_DCA_survival.html#calibration",
+    "href": "presentations/20240920_DCA_survival.html#calibration",
+    "title": "Introduction to Survival Analysis for Clinical Prediction",
+    "section": "Calibration",
+    "text": "Calibration\nVan Calster et al. (2019) If we fit a calibration curve, for example by fitting a logistic regression model to the predicted values and the actual observation (\\(1 = \\text{occured}\\), \\(0 =  \\text{didn't occur}\\)), we can get the intercept \\(\\alpha_{c}\\) and the slope \\(\\zeta\\). Where \\(\\alpha_{c}\\) is the calibration-in-the-large. \\[\\text{logit}(P(_{*}y_{i}=1|_*\\hat{\\pi}_{i}))=\\alpha+\\zeta\\text{logit}(_{*}\\hat{\\pi}_{i}) \\qquad(1)\\] A perfectly calibrated model will have an intecept \\(\\alpha = \\alpha_{c} = 0\\) and \\(\\zeta=1\\)\nWe can evaluate the calibration slope \\(\\zeta\\) to asses if the model is over- or underfitting. When \\(\\zeta &lt; 1\\) the model is overfitted, and when \\(\\zeta &gt; 1\\) the model is underfitted.\nTo calculate the calibration-in-the-large we fix the intercept at \\(1\\) and denote this a \\(\\alpha|\\zeta=1\\). We can then update equation Equation 1 to this form: \\[\\text{logit}(P(_{*}y_{i}=1|_{*}\\hat{\\pi}))=\\alpha_{c} + \\text{offset}(\\text{logit}(_{*}\\hat{\\pi}_{i})) \\qquad(2)\\] The calibration-in-the-large tells us if the risk on average is overstimated \\((\\alpha_{c}&lt;0)\\) or underestimated \\((\\alpha_{c}&gt;0)\\)\nImproving calibration by re-calibration, hyper parameter tuning, using regularization (LASSO)"
+  },
+  {
+    "objectID": "presentations/20240920_DCA_survival.html#a-brief-introduction-to-how-a-cox-ph-model-works",
+    "href": "presentations/20240920_DCA_survival.html#a-brief-introduction-to-how-a-cox-ph-model-works",
+    "title": "Introduction to Survival Analysis for Clinical Prediction",
+    "section": "A brief introduction to how a Cox PH model works",
+    "text": "A brief introduction to how a Cox PH model works"
+  },
+  {
+    "objectID": "presentations/20240920_DCA_survival.html#a-brief-introduction-to-how-a-cox-ph-model-works-1",
+    "href": "presentations/20240920_DCA_survival.html#a-brief-introduction-to-how-a-cox-ph-model-works-1",
+    "title": "Introduction to Survival Analysis for Clinical Prediction",
+    "section": "A brief introduction to how a Cox PH model works",
+    "text": "A brief introduction to how a Cox PH model works"
+  },
+  {
+    "objectID": "presentations/20240920_DCA_survival.html#but-what-about-machine-learning-for-survival",
+    "href": "presentations/20240920_DCA_survival.html#but-what-about-machine-learning-for-survival",
+    "title": "Introduction to Survival Analysis for Clinical Prediction",
+    "section": "But what about machine learning for Survival?",
+    "text": "But what about machine learning for Survival?"
+  },
+  {
+    "objectID": "presentations/20240920_DCA_survival.html#the-random-survival-forest-rsf",
+    "href": "presentations/20240920_DCA_survival.html#the-random-survival-forest-rsf",
+    "title": "Introduction to Survival Analysis for Clinical Prediction",
+    "section": "The Random Survival Forest (RSF)",
+    "text": "The Random Survival Forest (RSF)"
+  },
+  {
+    "objectID": "presentations/20240920_DCA_survival.html#exercises",
+    "href": "presentations/20240920_DCA_survival.html#exercises",
+    "title": "Introduction to Survival Analysis for Clinical Prediction",
+    "section": "Exercises",
+    "text": "Exercises\n\nAn explorotary data analysis:\n\nPlot the distrubution of the different predictors/variables\nPlot a correlation plot of the different predictors/variabls\nFit a Kaplan-Meier model using the R library and plot the survival curve\nReflections:\n\nWhich variables are highly correlated?\nWhat about missingness in data?\nWhat hypothesis can you generate from the survival curve? Try to plot it split on sex, and one other variables. How does this change the curve?\n\n\nFit a Cox Proportional Hazard model to the [SEER, GBSC or Colon data set]\n\nCalculate the discrimination using the C-statistics\n\nIs the discrimination in the ball park you expect? 0.5 being quessing, &gt; 0.7 being good and &gt; 0.8 being excelent\nWhy do you think the discrimination is at the level?\n\nTry to calculate the AUCROC curve for the same time points.\n\nHow does the curve change at different time intervals?\nWhy does it change?\n\nPlot the calibration plot for a given time period, for example 30 day, 1 year, 5 years or 10 years.\n\nLook back at the KM plot you did earlier. If you split on the same variable as in exercise 1 you should get multiple calibration plots. What does the calibration tell you?\n\nIn the next exercise you’ll fit a logistic regression model to construct the calibration curve \\[logit(P(_*y_i=1|_*\\hat{\\pi}_i))=\\alpha+\\zeta logit(_*\\hat{\\pi}_i)\\] Here the calibration-in-the-large is given by the calibration intercept \\(\\alpha_c\\) We also get the calibration slope \\(\\zeta\\)\nCalculate the calibration-in-the-large based on formula 2 #TODO: Add cross refernces!\nCalculate the calibration slope and intercept\n\nWhat does the slope and intercept indicate for you data and the model you’ve fitted?\n\nInspect the model output from the Cox PH. Which variables are most predictive for the prediction?\n\nReflect on why? Does it make sense from a clinical/biological pathway perspective?\n\n\nFitting a Random Survival Forest\n\nUse the R library randomForestSRC\nFit the model same way as you did with your Cox. Try to use the default parameters.\nCalculate the AUCROC score for the RSF\n\nHow does it perform compared to the Cox PH?\n\nPlot the calibration plot for a given time period, for example 30 day, 1 year, 5 years or 10 years.\n\nLook back at the KM plot you did earlier. If you split on the same variable as in exercise 1 you should get multiple calibration plots. What does the calibration tell you?\nHow does it differ from the Cox PH? By visual inspection, is the plot better, worse or equally calibrated?\n\nCalculate the calibration-in-the-large based on formula 2 #TODO: Add cross references!\nCalculate the calibration slope and intercept\n\nWhat does the slope and intercept indicate for you data and the model you’ve fitted?\n\nPlot the variable importance. Does it differ from the Cox PH output?\n\nReflect on why? Does it make sense from a clinical/biological pathway perspective?\n\n\nImproving the RSF In this exercise you’ll try to improve the performance of the RSF. This includes both discrimination and calibration! You’ll be using hyperparameter tuning and cross validation for this step. In this step we’ll go a step further and implement a 10 loop bootstrap loop to see how our models differs on different subsets of training."
+  },
+  {
+    "objectID": "presentations/20240920_DCA_survival.html#references",
+    "href": "presentations/20240920_DCA_survival.html#references",
+    "title": "Introduction to Survival Analysis for Clinical Prediction",
+    "section": "References",
+    "text": "References\n\n\n\n\n\n\n\n\nAltman, Naomi, and Martin Krzywinski. 2018. “The Curse(s) of Dimensionality.” Nature Methods 15 (6): 399–400. https://doi.org/10.1038/s41592-018-0019-x.\n\n\nBarbieri, Sebastiano, Suneela Mehta, Billy Wu, Chrianna Bharat, Katrina Poppe, Louisa Jorm, and Rod Jackson. 2022. “Predicting Cardiovascular Risk from National Administrative Databases Using a Combined Survival Analysis and Deep Learning Approach.” International Journal of Epidemiology 51 (3): 931–44. https://doi.org/10.1093/ije/dyab258.\n\n\nChristodoulou, Evangelia, Jie Ma, Gary S. Collins, Ewout W. Steyerberg, Jan Y. Verbakel, and Ben Van Calster. 2019. “A Systematic Review Shows No Performance Benefit of Machine Learning over Logistic Regression for Clinical Prediction Models.” Journal of Clinical Epidemiology 110 (June): 12–22. https://doi.org/10.1016/j.jclinepi.2019.02.004.\n\n\nCollins, Gary S, Paula Dhiman, Jie Ma, Michael M Schlussel, Lucinda Archer, Ben Van Calster, Frank E Harrell, et al. 2024. “Evaluation of Clinical Prediction Models (Part 1): From Development to External Validation.” BMJ, January, e074819. https://doi.org/10.1136/bmj-2023-074819.\n\n\nInfante, Gabriele, Rosalba Miceli, and Federico Ambrogi. 2023. “Sample Size and Predictive Performance of Machine Learning Methods with Survival Data: A Simulation Study.” Statistics in Medicine, November, sim.9931. https://doi.org/10.1002/sim.9931.\n\n\nLi, Yan, Matthew Sperrin, Darren M Ashcroft, and Tjeerd Pieter Van Staa. 2020. “Consistency of Variety of Machine Learning and Statistical Models in Predicting Clinical Risks of Individual Patients: Longitudinal Cohort Study Using Cardiovascular Disease as Exemplar.” BMJ, November, m3919. https://doi.org/10.1136/bmj.m3919.\n\n\nLiu, Weber, Liliana Laranjo, Harry Klimis, Jason Chiang, Jason Yue, Simone Marschner, Juan C Quiroz, Louisa Jorm, and Clara K Chow. 2023. “Machine-Learning Versus Traditional Approaches for Atherosclerotic Cardiovascular Risk Prognostication in Primary Prevention Cohorts: A Systematic Review and Meta-Analysis.” European Heart Journal - Quality of Care and Clinical Outcomes, March, qcad017. https://doi.org/10.1093/ehjqcco/qcad017.\n\n\nMartin, Glen P, Richard D Riley, Gary S Collins, and Matthew Sperrin. 2021. “Developing Clinical Prediction Models When Adhering to Minimum Sample Size Recommendations: The Importance of Quantifying Bootstrap Variability in Tuning Parameters and Predictive Performance.” Statistical Methods in Medical Research 30 (12): 2545–61. https://doi.org/10.1177/09622802211046388.\n\n\nRiley, Richard D, Joie Ensor, Kym I E Snell, Frank E Harrell, Glen P Martin, Johannes B Reitsma, Karel G M Moons, Gary Collins, and Maarten Van Smeden. 2020. “Calculating the Sample Size Required for Developing a Clinical Prediction Model.” BMJ, March, m441. https://doi.org/10.1136/bmj.m441.\n\n\nRiley, Richard D, Kym I E Snell, Lucinda Archer, Joie Ensor, Thomas P A Debray, Ben Van Calster, Maarten Van Smeden, and Gary S Collins. 2024. “Evaluation of Clinical Prediction Models (Part 3): Calculating the Sample Size Required for an External Validation Study.” BMJ, January, e074821. https://doi.org/10.1136/bmj-2023-074821.\n\n\nSCORE2-Diabetes Working Group and the ESC Cardiovascular Risk Collaboration. 2023. “SCORE2-Diabetes: 10-Year Cardiovascular Risk Estimation in Type 2 Diabetes in Europe.” European Heart Journal 44 (28): 2544–56. https://doi.org/10.1093/eurheartj/ehad260.\n\n\nVan Calster, Ben, David J. McLernon, Maarten Van Smeden, Laure Wynants, and Ewout W. Steyerberg. 2019. “Calibration: The Achilles Heel of Predictive Analytics.” BMC Medicine 17 (1): 230. https://doi.org/10.1186/s12916-019-1466-7."
+  }
+]

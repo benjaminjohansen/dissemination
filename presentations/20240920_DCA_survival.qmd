@@ -1,0 +1,133 @@
+---
+title: "Introduction to Survival Analysis for Clinical Prediction"
+subtitle: "With a little machine learning"
+author: 
+    - name: "Benjamin Lebiecka-Johansen"
+      id: BLJ
+      orcid:
+      email: benleb@rm.dk
+      affiliation:
+        - name: Steno Diabetes Center Aarhus
+          city: Aarhus
+          url: https://www.stenoaarhus.dk/research/
+bibliography: "C:/SDCA/disemination/My Library.bib"
+---
+
+## Funding and Disclosure 
+Funded by the Novo Nordisk Foundation: NNF22OC0076725
+I have nothing to disclose
+
+## About me
+- Engineer by training 
+- I worked with hearing aids and human behaviour: PhD in Human-Computer Interaction (HCI) and Ubiquitous and Pervasive Computing
+- Four years in industry as a data scientist
+- Now a researcher and data scientist at Steno Diabetes Center Aarhus
+    - With an interest in prediction models for CVD risk in diabetes
+- I do coding for fun 🤓
+
+## Introduction
+- Why is this relevant for people with an interest in the cardiovascular system?
+    - Most you will have seen either survival curves (Kaplan-Meier plots) or cummulative risk curves
+    - The most used predictive modelling in surival is ... The Cox Proportional Hazard regression model
+    - Who knows about SCORE2, QRISK3 or Framingham? @SCORE2-DiabetesWorkingGroupandtheESCCardiovascularRiskCollaboration2023SCORE2Diabetes10yearCardiovascular
+    - Machine learning (deep learning) might works much better than anticipated, if done right! @Barbieri2022PredictingCardiovascularRisk
+
+
+## A little word of warning!
+- Do we understand the basics of scoring?
+- Machine learning might not work as well as expected!
+- Do we have enough samples? @Riley2024EvaluationClinicalPrediction and @Riley2020CalculatingSampleSize
+    - This is a good ressource for survival @Infante2023SampleSizePredictive
+- What scenarios can we use it in?
+- What about the *Curse of Dimensionality*? @Altman2018CurseDimensionality
+- The litterature does not agree on the usefullness of machine learning for prediction models:
+    - @Christodoulou2019SystematicReviewShows
+    - Finds no difference, but argues calibration is off @Li2020ConsistencyVarietyMachine
+    - Finds machine learning outperforms regression models @Liu2023MachinelearningTraditionalApproaches
+
+## A small detour of discrimination and calibration
+A general introduction: @Riley2024EvaluationClinicalPrediction
+
+## Evaluating clinical models
+How do we actually evaluate clinical prediction models: @Collins2024EvaluationClinicalPrediction
+
+Internal validation: Recommended, bootstrapping @Martin2021DevelopingClinicalPrediction, k-fold cross validation@Collins2024EvaluationClinicalPrediction
+External validation
+
+## Discrimination
+## Calibration 
+@VanCalster2019CalibrationAchillesHeel
+If we fit a [calibration curve](https://cran.r-project.org/web/packages/CalibrationCurves/vignettes/CalibrationCurves.html), for example by fitting a logistic regression model to the predicted values and the actual observation ($1 = \text{occured}$, $0 =  \text{didn't occur}$),
+we can get the intercept $\alpha_{c}$ and the slope $\zeta$. Where $\alpha_{c}$ is the calibration-in-the-large.
+$$\text{logit}(P(_{*}y_{i}=1|_*\hat{\pi}_{i}))=\alpha+\zeta\text{logit}(_{*}\hat{\pi}_{i})$$ {#eq-calibration_curve}
+A perfectly calibrated model will have an intecept $\alpha = \alpha_{c} = 0$ and $\zeta=1$
+
+We can evaluate the calibration slope $\zeta$ to asses if the model is over- or underfitting. When $\zeta < 1$ the model is overfitted, and when $\zeta > 1$ the model is underfitted.
+
+To calculate the calibration-in-the-large we fix the intercept at $1$ and denote this a $\alpha|\zeta=1$.
+We can then update equation @eq-calibration_curve to this form:
+$$\text{logit}(P(_{*}y_{i}=1|_{*}\hat{\pi}))=\alpha_{c} + \text{offset}(\text{logit}(_{*}\hat{\pi}_{i}))$$ {#eq-CITL}
+The calibration-in-the-large tells us if the risk on **average** is overstimated $(\alpha_{c}<0)$ or underestimated $(\alpha_{c}>0)$
+
+Improving calibration by re-calibration, hyper parameter tuning, using regularization (LASSO)
+
+
+
+
+## A brief introduction to how a Cox PH model works
+
+## A brief introduction to how a Cox PH model works
+
+## But what about machine learning for Survival?
+
+## The Random Survival Forest (RSF)
+
+## Exercises
+1. An explorotary data analysis:
+    - Plot the distrubution of the different predictors/variables
+    - Plot a correlation plot of the different predictors/variabls
+    - Fit a Kaplan-Meier model using the R library and plot the survival curve 
+    - Reflections: 
+        - Which variables are highly correlated?
+        - What about missingness in data?
+        - What hypothesis can you generate from the survival curve? Try to plot it split on sex, and one other variables. How does this change the curve?
+
+
+2. Fit a Cox Proportional Hazard model to the [SEER, GBSC or Colon data set]
+    - Calculate the discrimination using the C-statistics
+        - Is the discrimination in the ball park you expect? 0.5 being quessing, > 0.7 being good and > 0.8 being excelent
+        - Why do you think the discrimination is at the level?
+    - Try to calculate the AUCROC curve for the same time points.
+        - How does the curve change at different time intervals?
+        - Why does it change?
+    - Plot the calibration plot for a given time period, for example 30 day, 1 year, 5 years or 10 years.
+        - Look back at the KM plot you did earlier. If you split on the same variable as in exercise 1 you should get multiple calibration plots. What does the calibration tell you?
+    - In the next exercise you'll fit a logistic regression model to construct the [calibration curve](https://cran.r-project.org/web/packages/CalibrationCurves/vignettes/CalibrationCurves.html) $$logit(P(_*y_i=1|_*\hat{\pi}_i))=\alpha+\zeta logit(_*\hat{\pi}_i)$$
+      Here the calibration-in-the-large is given by the calibration intercept $\alpha_c$
+      We also get the calibration slope $\zeta$
+    - Calculate the calibration-in-the-large based on formula 2 #TODO: Add cross refernces!
+    - Calculate the calibration slope and intercept
+        - What does the slope and intercept indicate for you data and the model you've fitted?
+    - Inspect the model output from the Cox PH. Which variables are most predictive for the prediction?
+        - Reflect on why? Does it make sense from a clinical/biological pathway perspective?
+3. Fitting a Random Survival Forest 
+    - Use the R library [randomForestSRC](https://www.randomforestsrc.org/articles/survival.html)
+    - Fit the model same way as you did with your Cox. Try to use the default parameters.
+    - Calculate the AUCROC score for the RSF
+        - How does it perform compared to the Cox PH?
+    - Plot the calibration plot for a given time period, for example 30 day, 1 year, 5 years or 10 years.
+        - Look back at the KM plot you did earlier. If you split on the same variable as in exercise 1 you should get multiple calibration plots. What does the calibration tell you?
+        - How does it differ from the Cox PH? By visual inspection, is the plot better, worse or equally calibrated?
+    - Calculate the calibration-in-the-large based on formula 2 #TODO: Add cross references!
+    - Calculate the calibration slope and intercept
+        - What does the slope and intercept indicate for you data and the model you've fitted?
+    - Plot the variable importance. Does it differ from the Cox PH output?
+        - Reflect on why? Does it make sense from a clinical/biological pathway perspective?
+
+
+4. Improving the RSF
+In this exercise you'll try to improve the performance of the RSF. This includes both discrimination and calibration!
+You'll be using hyperparameter tuning and cross validation for this step. 
+In this step we'll go a step further and implement a 10 loop bootstrap loop to see how our models differs on different subsets of training.
+
+## References
